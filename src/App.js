@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import NationalTrustLocations from './national-trust-places.json';
 
 function App() {
+
+  // const [list, setlist] = useState([]);
+
+ const locations = () => {
+
+  // console.log(NationalTrustLocations);
+
+  const seList = [];
+  Object.keys(NationalTrustLocations).map(function(key, index) {
+
+    if (NationalTrustLocations[key].cmsRegion === 'RegionLondonSouthEast' && NationalTrustLocations[key].subTitle.includes("Kent")) {
+
+      console.log(NationalTrustLocations[key]);
+
+      seList.push({
+        title: NationalTrustLocations[key].title,
+        location: NationalTrustLocations[key].subTitle,
+        image: NationalTrustLocations[key].imageUrl
+      })
+    }
+    return false;
+  });
+  
+  console.log(seList);
+ }
+
+ locations();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <h1>Locations</h1>
   );
 }
 
